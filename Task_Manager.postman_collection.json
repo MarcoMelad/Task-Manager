@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "492405c6-6ed9-45fc-993e-3aceff2ebb96",
+		"name": "Task_Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32524285"
+	},
+	"item": [
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "get all Tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responsedata = JSON.parse(responseBody);  ",
+									"if (responsedata.success) {",
+									"pm.collectionVariables.set(\"task_id\", responsedata.data.tasks[0].id);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/tasks?status=pending&due_date_from=2024-12-10&due_date_to=2024-12-20",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								},
+								{
+									"key": "due_date_from",
+									"value": "2024-12-10"
+								},
+								{
+									"key": "due_date_to",
+									"value": "2024-12-20"
+								}
+							]
+						},
+						"description": "This request for getting all task"
+					},
+					"response": []
+				},
+				{
+					"name": "get all Trashed Tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responsedata = JSON.parse(responseBody);  ",
+									"if (responsedata.success) {",
+									"pm.collectionVariables.set(\"task_id\", responsedata.data.tasks[0].id);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/tasks/trashed",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"trashed"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending",
+									"disabled": true
+								},
+								{
+									"key": "due_date_from",
+									"value": "2024-12-10",
+									"disabled": true
+								},
+								{
+									"key": "due_date_to",
+									"value": "2024-12-20",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This request for getting all task"
+					},
+					"response": []
+				},
+				{
+					"name": "show Task",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/tasks/{{task_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "new task 1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test api new task 1",
+									"type": "text"
+								},
+								{
+									"key": "due_date",
+									"value": "2024-11-15",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/tasks/add",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "new task edit",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test api new task",
+									"type": "text"
+								},
+								{
+									"key": "due_date",
+									"value": "2024-12-15",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/tasks/edit/{{task_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"edit",
+								"{{task_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/tasks/delete/51",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"delete",
+								"51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/tasks/retrieve/51",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"retrieve",
+								"51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "force Delete Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/tasks/force-delete/51",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"force-delete",
+								"51"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Tasks",
+			"item": [
+				{
+					"name": "get User Tasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/tasks/1/user-tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"1",
+								"user-tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign Task To Users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "emails[]",
+									"value": "grant.pascale@example.com",
+									"type": "text"
+								},
+								{
+									"key": "emails[]",
+									"value": "test@example.com",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/tasks/49/assign",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"49",
+								"assign"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "task_id",
+			"value": ""
+		}
+	]
+}
