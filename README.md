@@ -30,7 +30,7 @@ after clone/ download the project file, `cd` into the project directory and foll
 - replace `{{url}}` with your base url.
 - run the collection.
 - you're done!
-- you can view api documentation `https://documenter.getpostman.com/view/32524285/2sAYBYeq28`
+- you can view api documentation https://documenter.getpostman.com/view/32524285/2sAYBYeq28
 ### Credentials
 
 
